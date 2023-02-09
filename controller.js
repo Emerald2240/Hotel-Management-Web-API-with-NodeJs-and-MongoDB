@@ -1,82 +1,25 @@
-const data = require("./data");
-// const data = [{"message": "I'm going to work perfectly. Whether i like it or not."}];
+const Person = require("./PersonModel");
 
 class Controller {
-
-    //getting all moviesA
-    async getMovies() {
-        return new Promise((resolve, _) => resolve(data));
+    async getAllPersons(){
+        return await Person.find({}, "-__v");
     }
 
-    //get a single movie
-    async getMovie(id) {
-        return new Promise((resolve, reject) => {
-
-            //get the single movie
-            let movie = data.find((movie) => movie.id === parseInt(id));
-            if (movie) {
-
-                //return the movie
-                resolve(movie);
-            } else {
-
-                //return an error
-                reject(`Movie with id: ${id} not found`);
-            }
-        });
+    async addPerson(person){
+        return await Person.create(person);
     }
 
-    async createMovie(movie) {
-        return new Promise((resolve, _) => {
-
-            //create a movie, with random id and data sent
-            let newMovie = {
-                id: Math.floor(4 + Math.random() * 10),
-                ...movie,
-            };
-
-            //return the newly created movie
-            resolve(newMovie);
-        });
+    async getUserById(id){
+        return await Person.findOne({_id: id});
     }
 
-    async updateMovie(id) {
-        return new Promise((resolve, reject) => {
+    async editUserById(id, data) {
+        return await Person.findOneAndUpdate({_id: id}, data);
+    } 
 
-            //get the movie
-            let movie = data.find((movie) => movie.id === parseInt(id));
-
-            //if no movie, return an error
-            if (!movie) {
-                reject(movie);
-            }
-
-            //else, update it by setting completed to true
-            movie["completed"] = true;
-
-            //return the updated movie
-            resolve(movie);
-        });
+    async deleteUserById(id){
+        return await Person.findOneAndDelete({_id: id});
     }
-
-    //deleting a movie
-    async deleteMovie(id) {
-        return new Promise((resolve, reject) => {
-
-            //get the movie
-            let movie = data.find((movie) => movie.id === parseInt(id));
-
-            //if no movie, return an error
-            if (!movie) {
-                reject(`No movie with id ${id} found`);
-            }
-
-            //else return a success message
-            resolve("Movie deleted successfully");
-        });
-    }
-
-
 }
 
 module.exports = new Controller();

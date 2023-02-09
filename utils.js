@@ -1,34 +1,22 @@
-function getReqData(req) {
-    return new Promise((resolve, reject) => {
-        try {
-            let body = [];
+const addNumbers = (a, b) => {
+    return a + b;
+};
 
-            //listen to data sent by client
-            req.on("data", (chunk) => {
+const divideNumbers = (a, b) => {
+    return a / b;
+};
 
-                // append the string version to the body
-                body += chunk.toString();
-            });
+const multiplyNumbers = (a, b) => {
+    return a * b;
+};
 
-            //listen till the end of data
-            req.on("end", () => {
+const minusNumbers = (a, b) => {
+    return a - b;
+};
 
-                //send back the data
-                resolve(body);
-            });
-
-            // //listen till the end of data
-            // req.on("error", (err) => {
-
-            //     //send back the data
-            //     resolve(JSON.stringify([{ "message": "Unknown error occured" }]));
-            // });
-
-
-        } catch (error) {
-            reject(error);
-        }
-    });
-}
-
-module.exports = { getReqData }
+module.exports = { 
+    addNumbers,
+    divideNumbers,
+    multiplyNumbers,
+    minusNumbers,
+};

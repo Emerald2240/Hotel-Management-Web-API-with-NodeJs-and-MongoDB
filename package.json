@@ -1,4 +1,16 @@
 {
+  "name": "Task 9 Building an API",
+  "version":"1.0.0",
+  "description":"This is a hotel management api",
+  "main":"app.js",
+  "scripts": {
+    "test":"jest",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author":"",
+  "license":"ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
