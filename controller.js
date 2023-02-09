@@ -29,7 +29,7 @@ class Controller {
     async createMovie(movie) {
         return new Promise((resolve, _) => {
 
-            //create a movie, with id and data sent
+            //create a movie, with random id and data sent
             let newMovie = {
                 id: Math.floor(4 + Math.random() * 10),
                 ...movie,

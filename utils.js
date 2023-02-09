@@ -1,7 +1,7 @@
 function getReqData(req) {
     return new Promise((resolve, reject) => {
         try {
-            let body = "";
+            let body = [];
 
             //listen to data sent by client
             req.on("data", (chunk) => {
@@ -16,6 +16,15 @@ function getReqData(req) {
                 //send back the data
                 resolve(body);
             });
+
+            // //listen till the end of data
+            // req.on("error", (err) => {
+
+            //     //send back the data
+            //     resolve(JSON.stringify([{ "message": "Unknown error occured" }]));
+            // });
+
+
         } catch (error) {
             reject(error);
         }
