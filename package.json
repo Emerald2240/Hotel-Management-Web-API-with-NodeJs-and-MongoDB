@@ -8,9 +8,6 @@
     "dev": "nodemon app.js",
     "start": "node app.js"
   },
-  "keywords": [],
-  "author":"",
-  "license":"ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

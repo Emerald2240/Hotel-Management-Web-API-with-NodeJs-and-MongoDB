@@ -29,6 +29,11 @@ app.get("/api/v1/users", async (req, res) => {
     } catch (err) {
         res
         .status(500)
-        .send({message: err.message || MESSAGES.FAILED, success: false});
+        .send({message: err.message || MESSAGES.ERROR, success: false});
     }
-})
+});
+
+app.listen(PORT, ()=> {
+    database();
+    console.log(`Server started on port: ${PORT}`);
+});

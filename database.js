@@ -13,7 +13,7 @@ function database() {
         })
         .catch((err) => {
             console.log("There was an error while connecting to the database.");
-        })
+        });
 }
 
 module.exports = database;
