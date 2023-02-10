@@ -28,12 +28,26 @@ app.get("/api/v1/users", async (req, res) => {
             .send({ message: MESSAGES.FETCHED, success: true, data: users });
     } catch (err) {
         res
-        .status(500)
-        .send({message: err.message || MESSAGES.ERROR, success: false});
+            .status(500)
+            .send({ message: err.message || MESSAGES.ERROR, success: false });
     }
 });
 
-app.listen(PORT, ()=> {
+//create a user
+app.post("/api/v1/users", async (req, res) => {
+    try {
+        const data = await Controller.addPerson(req.body);
+        res
+            .status(201)
+            .send({ message: MESSAGES.CREATED, success: true, data });
+    } catch (err) {
+        res
+            .status(500)
+            .send({ message: err.message || MESSAGES.ERROR, success: false });
+    }
+});
+
+app.listen(PORT, () => {
     database();
     console.log(`Server started on port: ${PORT}`);
 });
