@@ -1,0 +1,2 @@
+
+    async addRoomType(room) {

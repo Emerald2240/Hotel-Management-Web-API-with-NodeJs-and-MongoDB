@@ -2,12 +2,8 @@ const constants = {
     DATABASE_URI: process.env.DATABASE_URI,
 
     DATABASES: {
-        PERSON: "person",
-    },
-
-    USER_TYPES: {
-        USER: "user",
-        AGENT: "agent",
+        ROOM: "room",
+        ROOM_TYPE: "room_type"
     },
 
     MESSAGES: {
