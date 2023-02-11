@@ -11,7 +11,7 @@ const Controller = require("./controller");
 const app = express();
 const { MESSAGES } = constants;
 
-app.use(cors());
+app.use(cors({origin: "*"}));
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
@@ -58,7 +58,7 @@ app.get("/api/v1/room", async (req, res) => {
 //fetch particular room with its roomname or roomtype or min price or max price
 app.get("/api/v1/room-search", async (req, res) => {
 
-    let roomName = req.query.search;
+    let roomName = req.query.roomName;
     let roomType = req.query.roomType;
     let minPrice = req.query.minPrice;
     let maxPrice = req.query.maxPrice;
@@ -78,11 +78,6 @@ app.get("/api/v1/room-search", async (req, res) => {
     if (maxPrice === undefined) {
         maxPrice = 9999999999999999;
     }
-
-    console.log(roomName);
-    console.log(roomType);
-    console.log(minPrice);
-    console.log(maxPrice);
 
     try {
         const users = await Controller.findRoom(roomName, roomType, minPrice, maxPrice);
@@ -165,10 +160,64 @@ app.post("/api/v1/room", async (req, res) => {
 
 
 //#region PATCH Region //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.patch("/api/v1/room/:roomId", async (req, res) => {
+    try {
+        const data = await Controller.editRoomById(req.params.roomId, req.body);
+        res
+            .status(201)
+            .send({ message: MESSAGES.UPDATED, success: true, data });
+    } catch (err) {
+        res
+            .status(500)
+            .send({ message: err.message || MESSAGES.ERROR, success: false });
+    }
+});
+
+app.patch("/api/v1/room-type/:roomTypeId", async (req, res) => {
+    try {
+        const data = await Controller.editRoomTypeById(req.params.roomTypeId, req.body);
+        res
+            .status(201)
+            .send({ message: MESSAGES.UPDATED, success: true, data });
+    } catch (err) {
+        res
+            .status(500)
+            .send({ message: err.message || MESSAGES.ERROR, success: false });
+    }
+});
+
 //#endregion
 
 
 //#region DELETE Region /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.delete("/api/v1/room/:roomId", async (req, res) => {
+    try {
+        const data = await Controller.deleteRoomById(req.params.roomId);
+        res
+            .status(200)
+            .send({ message: MESSAGES.DELETED, success: true, data });
+    } catch (err) {
+        res
+            .status(500)
+            .send({ message: err.message || MESSAGES.ERROR, success: false });
+    }
+});
+
+app.delete("/api/v1/room-type/:roomTypeId", async (req, res) => {
+    try {
+        const data = await Controller.deleteRoomTypeById(req.params.roomTypeId);
+        res
+            .status(201)
+            .send({ message: MESSAGES.DELETED, success: true, data });
+    } catch (err) {
+        res
+            .status(500)
+            .send({ message: err.message || MESSAGES.ERROR, success: false });
+    }
+});
+
 //#endregion
 
 

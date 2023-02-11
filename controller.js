@@ -51,12 +51,17 @@ class Controller {
     }
 
     async editRoomById(id, data) {
-        return await Room.findOneAndUpdate({ _id: id }, data);
+        return await Room.findByIdAndUpdate({ _id: id }, data, { new: true });
     }
 
     async deleteRoomById(id) {
-        return await Room.findOneAndDelete({ _id: id });
+        return await Room.findByIdAndDelete({ _id: id });
     }
+
+    async deleteRoomTypeById(id) {
+        return await Room.findByIdAndDelete({ _id: id });
+    }
+
 
     //Room Type Section
     async getAllRoomTypes() {
@@ -75,7 +80,7 @@ class Controller {
     }
 
     async editRoomTypeById(id, data) {
-        return await RoomType.findOneAndUpdate({ _id: id }, data);
+        return await RoomType.findByIdAndUpdate({ _id: id }, data, { new: true });
     }
 
     async deleteRoomTypeById(id) {

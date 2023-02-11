@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const constants = require("./constants");
 
 function database() {
+    console.log("connecting to DB...")
     mongoose
+    .set('strictQuery', true)
         .connect(constants.DATABASE_URI, {
             // useCreateIndex:true,
             // useNewUrlParser:true,
