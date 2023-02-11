@@ -31,12 +31,13 @@ Create a POST endpoint for storage of rooms in the following format
 }
 POST - {{baseUrl}}/api/v1/rooms
 
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\///////////////////////////////////////////////////////////////////
 
 Create a GET endpoint for fetching all the rooms (add filters in the following formats)
 GET - {{baseUrl}}/api/v1/rooms?search={searchRoomNameMatch}&roomType={searchRoomTypeNameMatch}&minPrice={searchRoomMinimumPriceMatch}&maxPrice={searchRoomMaximumPriceMatch}
 
 Available queries are the search, roomType, minPrice& maxPrice, which are meant to be optional queries on the db unless when the user passes them on the endpoint. Note that when only maxPrice is passed, consider the minPrice 0
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Current Progress ///////////////////////////////////////////////////////////////////
 
 Create a PATCH endpoint for editing a room using its id
 PATCH - {{baseUrl}}/api/v1/rooms/{roomId}
