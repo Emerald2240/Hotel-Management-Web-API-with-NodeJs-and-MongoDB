@@ -1,7 +1,7 @@
 # Hotel Mangement Web API
 In an ongoing hotel management project, the backend developer having looked at the Figma Design is tasked to chunk out some APIs in vanilla javascript using NodeJs and ExpressJs for the frontend to consume.
 
-The database consists of two tables or collections namely: Rooms and Room Types. The room type holds information about the size, luxury, descripting and inventory of the rooms. Each room has a name, price and a single room type.
+The database consists of two tables or collections namely: Rooms and Room Types. The room type holds information about the size, luxury, description and inventory of the rooms. Each room has a name, price and a single room type.
 
 ## Table of Contents
 1. How to Install and Run
@@ -30,26 +30,26 @@ These methods will be stated for each api endpoint.
 
 ### GET
 
-1. *localhost:5000/* -- Base api endpoint. Simply returns a successful message, indicating the API is alive.
+1. **localhost:5000/** -- Base api endpoint. Simply returns a successful message, indicating the API is alive.
 ***
-2. *localhost:5000/api/v1/rooms* -- Fetches all rooms available in the database. It takes no parameters.
+2. **localhost:5000/api/v1/rooms** -- Fetches all rooms available in the database. It takes no parameters.
 ***
-3. *localhost:5000/api/v1/room/:id* -- Fetches a particular room, using its object Id. This takes a single parameter input (id) such that the query would look like: 
+3. **localhost:5000/api/v1/room/:id** -- Fetches a particular room, using its object Id. This takes a single parameter input (id) such that the query would look like: 
 
 **localhost:5000/api/v1/room/63e77d29fcefc372dbb60b2c**
 ***
-4. *localhost:5000/api/v1/room-search?roomName={searchRoomNameMatch}&roomType={searchRoomTypeNameMatch}&minPrice={searchRoomMinimumPriceMatch}&maxPrice={searchRoomMaximumPriceMatch}* -- Fetches a particular room or list of rooms that match one or more of the following: room name, room type, minimum price or maximum price. This endpoint takes a query as input. 
+4. **localhost:5000/api/v1/room-search?roomName={searchRoomNameMatch}&roomType={searchRoomTypeNameMatch}&minPrice={searchRoomMinimumPriceMatch}&maxPrice={searchRoomMaximumPriceMatch}** -- Fetches a particular room or list of rooms that match one or more of the following: room name, room type, minimum price or maximum price. This endpoint takes a query as input. 
 
 Eg: **localhost:5000/api/v1/room-search?roomName=Room 1&roomType=King&minPrice=10000&maxPrice=50000**
 ***
-5. *localhost:5000/api/v1/room-types* -- Fetches all room types available in the database. It takes no parameters.
+5. **localhost:5000/api/v1/room-types** -- Fetches all room types available in the database. It takes no parameters.
 ***
-6. *localhost:5000/api/v1/room-type/:id* -- Fetches a particular room type, using its object Id. This takes a single parameter input (id) such that the query would look like: 
+6. **localhost:5000/api/v1/room-type/:id** -- Fetches a particular room type, using its object Id. This takes a single parameter input (id) such that the query would look like: 
 
 **localhost:5000/api/v1/room-type/63e77d29fcefc372dbb60b2c**
 ***
 ### POST
-1. *localhost:5000/api/v1/room* -- Creates a new room in the database. Takes 3 main parameters from the request body in JSON format. These are: name, room_type and price. 
+1. **localhost:5000/api/v1/room** -- Creates a new room in the database. Takes 3 main parameters from the request body in JSON format. These are: name, room_type and price. 
 
 Example: **{
     "name": "Room 1",
@@ -57,7 +57,7 @@ Example: **{
     "price": 20000
 }**
 ***
-2. *localhost:5000/api/v1/room-type* -- Creates a new room type in the database. Takes 2 main parameters from the request body in JSON format. These are: name and description. 
+2. **localhost:5000/api/v1/room-type** -- Creates a new room type in the database. Takes 2 main parameters from the request body in JSON format. These are: name and description. 
 
 Example: **{
     "name": "Twin",
@@ -66,7 +66,7 @@ Example: **{
 ***
 
 ### PATCH
-1. *localhost:5000/api/v1/room/:roomId* -- Updates a room previously created in the database. Takes 1 query parameter(roomId) and 3 main parameters from the request body in JSON format: name, room_type and price. The roomId query parameter helps to identify the particular room to be updated. Example: 
+1. **localhost:5000/api/v1/room/:roomId** -- Updates a room previously created in the database. Takes 1 query parameter(roomId) and 3 main parameters from the request body in JSON format: name, room_type and price. The roomId query parameter helps to identify the particular room to be updated. Example: 
 
 Query: **localhost:5000/api/v1/room/63e772e968f23b2c2b3ea342** 
 
@@ -76,7 +76,7 @@ Body: **{
     "price": 20000
 }**
 ***
-2. *localhost:5000/api/v1/room/:roomId* -- Updates a room type previously created in the database. Takes 1 query parameter(roomTypeId) and 2 main parameters from the request body in JSON format: name and description. The roomTypeId query parameter helps to identify the particular room type to be updated. Example: 
+2. **localhost:5000/api/v1/room/:roomId** -- Updates a room type previously created in the database. Takes 1 query parameter(roomTypeId) and 2 main parameters from the request body in JSON format: name and description. The roomTypeId query parameter helps to identify the particular room type to be updated. Example: 
 
 Query: **localhost:5000/api/v1/room-type/63e772e968f23b2c2b3ea342** 
 
@@ -87,11 +87,11 @@ Body: **{
 ***
 
 ### DELETE
-1. *localhost:5000/api/v1/room/:roomId* -- Deletes a particular room. Takes one query parameter(roomId) for identifying the particular room to delete. Example:
+1. **localhost:5000/api/v1/room/:roomId** -- Deletes a particular room. Takes one query parameter(roomId) for identifying the particular room to delete. Example:
 
 Query: **localhhost:5000/api/v1/room/63e772e968f23b2c2b3ea342**
 ***
-2. *localhost:5000/api/v1/room-type/:roomTypeId* -- Deletes a particular room type. Takes one query parameter(roomTypeId) for identifying the particular room type to delete. Example:
+2. **localhost:5000/api/v1/room-type/:roomTypeId** -- Deletes a particular room type. Takes one query parameter(roomTypeId) for identifying the particular room type to delete. Example:
 
 Query: **localhhost:5000/api/v1/room-type/63e772e968f23b2c2b3ea342**
  ***
