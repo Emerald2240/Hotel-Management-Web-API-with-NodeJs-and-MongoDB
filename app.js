@@ -11,9 +11,11 @@ const Controller = require("./controller");
 const app = express();
 const { MESSAGES } = constants;
 
+//CORS ensures our app can be accessed by anyone. This is ofcourse not advisable for a live project
 app.use(cors({origin: "*"}));
 app.use(express.json());
 
+//Set our default port to 5000
 const PORT = process.env.PORT || 5000;
 
 //#endregion
@@ -55,7 +57,7 @@ app.get("/api/v1/room/:id", async (req, res) => {
     }
 });
 
-//fetch particular room with its roomname or roomtype or min price or max price
+//fetch particular room with its roomname or roomtypeid or minimum price or maximum price
 app.get("/api/v1/room-search", async (req, res) => {
 
     let roomName = req.query.roomName;
@@ -63,6 +65,7 @@ app.get("/api/v1/room-search", async (req, res) => {
     let minPrice = req.query.minPrice;
     let maxPrice = req.query.maxPrice;
 
+    //Set the defaults incase they are not entered by the user
     if (roomName === undefined) {
         //Impossible to match value
         roomName = "######################";
