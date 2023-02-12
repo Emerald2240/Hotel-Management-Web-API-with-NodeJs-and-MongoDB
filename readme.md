@@ -6,9 +6,8 @@ The database consists of two tables or collections namely: Rooms and Room Types.
 ## Table of Contents
 1. How to Install and Run
 2. How to use the API and its Endpoints
-3. Extras
-4. Credits
-5. How to Contribute
+3. Credits
+4. How to Contribute
 
 
 ## How to Install and Run
@@ -95,3 +94,9 @@ Query: **localhhost:5000/api/v1/room/63e772e968f23b2c2b3ea342**
 
 Query: **localhhost:5000/api/v1/room-type/63e772e968f23b2c2b3ea342**
  ***
+ 
+ ## Credits
+I had the assistance of many people whilst building the project; in the way of coding, design, testing, data entry and advice but most impactful of all were The Genesys Learnable Facilitators, Mentors and Tutors. I'm super grateful for the guidance and opportunity to develop and display my coding skills
+
+## How to contribute
+If you find any part of the app you can improve, just fork the project, work on your own copy then send me a pull request, i reply as soon as possible. Do try to make the pull request as small as possible, that way its easier to read through them.
