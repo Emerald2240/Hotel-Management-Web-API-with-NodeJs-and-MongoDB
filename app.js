@@ -69,6 +69,7 @@ app.get("/api/v1/room-search", async (req, res) => {
     }
 
     if (roomTypeId === undefined) {
+        //invalid and null roomType id
         roomTypeId = "63e77e9aadc3942c919e9160";
     }
 
@@ -77,7 +78,8 @@ app.get("/api/v1/room-search", async (req, res) => {
     }
 
     if (maxPrice === undefined) {
-        maxPrice = 9999999999999999;
+        //Impossible to reach max value
+        maxPrice = 999999999999999999999999999999999999999;
     }
 
     try {
