@@ -1,6 +1,6 @@
-//#region Setup and initialisation side ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//#region Setup and Initialisation ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//a module imported from the node_modules folder, is always inside double quotes and without slashes or dots
+//All modules/files/classes are imported and initialized
 const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 
 
 
-//#region GET Region ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//#region GET  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //base api
 app.get("/", (req, res) => {
@@ -42,9 +42,9 @@ app.get("/api/v1/rooms", async (req, res) => {
 });
 
 //fetch particular room with its id
-app.get("/api/v1/room", async (req, res) => {
+app.get("/api/v1/room/:id", async (req, res) => {
     try {
-        const users = await Controller.getRoomById();
+        const users = await Controller.getRoomById(req.params.id);
         res
             .status(200)
             .send({ message: MESSAGES.FETCHED, success: true, data: users });
@@ -59,16 +59,17 @@ app.get("/api/v1/room", async (req, res) => {
 app.get("/api/v1/room-search", async (req, res) => {
 
     let roomName = req.query.roomName;
-    let roomType = req.query.roomType;
+    let roomTypeId = req.query.roomType;
     let minPrice = req.query.minPrice;
     let maxPrice = req.query.maxPrice;
 
     if (roomName === undefined) {
-        roomName = "";
+        //Impossible to match value
+        roomName = "######################";
     }
 
-    if (roomType === undefined) {
-        roomType = "";
+    if (roomTypeId === undefined) {
+        roomTypeId = "63e77e9aadc3942c919e9160";
     }
 
     if (minPrice === undefined) {
@@ -80,7 +81,7 @@ app.get("/api/v1/room-search", async (req, res) => {
     }
 
     try {
-        const users = await Controller.findRoom(roomName, roomType, minPrice, maxPrice);
+        const users = await Controller.findRoom(roomName, roomTypeId, minPrice, maxPrice);
         res
             .status(200)
             .send({ message: MESSAGES.FETCHED, success: true, data: users });
@@ -110,9 +111,9 @@ app.get("/api/v1/room-types", async (req, res) => {
 });
 
 //fetch particular room type with its id
-app.get("/api/v1/room-type", async (req, res) => {
+app.get("/api/v1/room-type/:id", async (req, res) => {
     try {
-        const roomType = await Controller.getRoomtypeById();
+        const roomType = await Controller.getRoomTypeById(req.params.id);
         res
             .status(200)
             .send({ message: MESSAGES.FETCHED, success: true, data: roomType });
@@ -126,7 +127,7 @@ app.get("/api/v1/room-type", async (req, res) => {
 //#endregion
 
 
-//#region POST Region ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//#region POST  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //create a room type
 app.post("/api/v1/room-type", async (req, res) => {
@@ -159,8 +160,9 @@ app.post("/api/v1/room", async (req, res) => {
 //#endregion
 
 
-//#region PATCH Region //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//#region PATCH //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//edit a particular room
 app.patch("/api/v1/room/:roomId", async (req, res) => {
     try {
         const data = await Controller.editRoomById(req.params.roomId, req.body);
@@ -174,6 +176,7 @@ app.patch("/api/v1/room/:roomId", async (req, res) => {
     }
 });
 
+//edit a particular room type
 app.patch("/api/v1/room-type/:roomTypeId", async (req, res) => {
     try {
         const data = await Controller.editRoomTypeById(req.params.roomTypeId, req.body);
@@ -190,8 +193,9 @@ app.patch("/api/v1/room-type/:roomTypeId", async (req, res) => {
 //#endregion
 
 
-//#region DELETE Region /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//#region DELETE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//find room and delete it
 app.delete("/api/v1/room/:roomId", async (req, res) => {
     try {
         const data = await Controller.deleteRoomById(req.params.roomId);
@@ -205,6 +209,7 @@ app.delete("/api/v1/room/:roomId", async (req, res) => {
     }
 });
 
+//find room type and delete
 app.delete("/api/v1/room-type/:roomTypeId", async (req, res) => {
     try {
         const data = await Controller.deleteRoomTypeById(req.params.roomTypeId);

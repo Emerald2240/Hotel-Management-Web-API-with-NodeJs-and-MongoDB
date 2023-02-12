@@ -3,7 +3,7 @@ const RoomType = require("./RoomTypeModel");
 
 class Controller {
     async getAllRooms() {
-        return await Room.find();
+        return await Room.find().populate('room_type');
     }
 
     async addRoom(room) {
@@ -11,55 +11,132 @@ class Controller {
     }
 
     async getRoomById(id) {
-        return await Room.findOne({ _id: id });
+        return await Room.findOne({ _id: id }).populate('room_type');
     }
 
-    async findRoom(roomName, roomType, minPrice, maxPrice) {
-        // return await Room.find({
-        //     'name': roomName,
-        //     'room_type': roomType,
-        //     'price': { $gt: minPrice, $lt: maxPrice }
-        // });
+    async findRoom(roomName, roomTypeId, minPrice, maxPrice) {
+        let roomNameRegex = new RegExp(roomName, 'i');
 
-        // return await Room.find().
-        //     where('name').equals(roomName).
-        // populate({
-        //     path: 'room_type',
-        //     match: { name: roomType },
-        // }).
-        //     where('price').gt(minPrice).lt(maxPrice)
-
-        // return await Room.find().
-        // where('name').equals(roomName).
-        // populate('room_type').
-        // where('price').gt(minPrice).lt(maxPrice);
 
         return await Room.find().
             and([
                 {
-                    $or: [{ name: roomName },
-                    { 'price': { $gt: minPrice, $lt: maxPrice } }
+                    $or: [
+                        { name: roomNameRegex },
+                        { room_type: roomTypeId },
                     ]
                 },
-                {
-                    $or: [{ path: 'room_type', match: { name: roomType } },
-                    { 'price': { $gt: minPrice, $lt: maxPrice } }
-                    ]
-                }
+                { 'price': { $gt: minPrice, $lt: maxPrice } }
             ]).
-            populate('room_type')
+            limit(10).
+            populate('room_type');
+
+
+
+
+
+
+        // const result = await Company.aggregate([
+        //     {
+        //         $lookup: {
+        //             from: 'persons',
+        //             localField: 'founder',
+        //             foreignField: '_id',
+        //             as: 'founder'
+        //         }
+        //     },
+        //     { $unwind: { path: '$founder' } },
+        //     { $match: { 'founder.lastname': 'Robertson' } }
+        // ]);
+
+
+
+
+
+
+        // let regex = new RegExp(value.searchQuery, 'i');
+        // {
+        //     $and: [{
+        //         $or: [
+        //             { title: regex },
+        //             { description: regex }]
+        //     },
+        //     { category: value.category },
+        //     { city: value.city }
+        //     ]
+        // }
+
+
+
+
+        // db.collection.find(
+        //     { "name_lower": { $regex: new RegExp("^" + thename.toLowerCase(), "i") } }
+        // );
+
+
+
+
+        // return await Room.find().
+        //     and([
+        //         {
+        //             $or: [
+        //                 { name: { $regex: new RegExp("^" + roomName.toLowerCase(), "i") } },
+        //                 { 'price': { $gt: minPrice, $lt: maxPrice } }
+        //             ]
+        //         },
+        //         {
+        //             $or: [
+        //                 { path: 'room_type', match: { name: roomType } },
+        //                 { 'price': { $gt: minPrice, $lt: maxPrice } }
+        //             ]
+        //         }
+        //     ]).
+        //     populate('room_type');
+
+
+
+
+
+
+
+
+
+        // return await Room.find({
+        //     'name': roomName,
+        //     'room_type': roomType,
+        //     'price': { $gt: minPrice, $lt: maxPrice }
+        // }).populate('room-type');
+
+
+
+
+        // return await Room.find().
+        //     where('name').equals(roomName).
+        //     populate({
+        //     path: 'room_type',
+        //     match: { name: roomType },}).
+        //     where('price').gt(minPrice).lt(maxPrice)
+
+
+
+
+
+        // return await Room.find().
+        // where('name').equals(roomName).
+        // where('price').gt(minPrice).lt(maxPrice).;
+        // populate('room_type');
     }
 
     async editRoomById(id, data) {
-        return await Room.findByIdAndUpdate({ _id: id }, data, { new: true });
+        return await Room.findByIdAndUpdate({ _id: id }, data, { new: true }).populate('room_type');
     }
 
     async deleteRoomById(id) {
-        return await Room.findByIdAndDelete({ _id: id });
+        return await Room.findByIdAndDelete({ _id: id }).populate('room_type');
     }
 
     async deleteRoomTypeById(id) {
-        return await Room.findByIdAndDelete({ _id: id });
+        return await Room.findByIdAndDelete({ _id: id }).populate('room_type');
     }
 
 

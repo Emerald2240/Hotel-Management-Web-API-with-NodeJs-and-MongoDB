@@ -46,7 +46,8 @@ GET - {{baseUrl}}/api/v1/rooms/{roomId}
 Create a PATCH endpoint for editing a room using its id
 PATCH - {{baseUrl}}/api/v1/rooms/{roomId}
  
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Current Progress ///////////////////////////////////////////////////////////////////////////
 
 Create a DELETE endpoint or deleting a room using its id
 DELETE - {{baseUrl}}/api/v1/rooms/{roomId}
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Current Progress ///////////////////////////////////////////////////////////////////////////
