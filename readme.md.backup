@@ -12,4 +12,4 @@ The database consists of two tables or collections namely: Rooms and Room Types.
 
 
 ## How to Install and Run
-The above project is a NodeJs/Vanilla JavaScript app that runs with Express. Download the code locally into your machine and ensure you have NodeJs installed on your computer. Once done, open the console inside the folder, and either run *node app.js* or *npm run app*. Make sure you have an active internet connection as the database is hosted online. Once you run the code, you should see a message "Yay! Database connected successfully"
+The above project is a NodeJs/Vanilla JavaScript app that runs with Express. Download the code locally into your machine and ensure you have NodeJs installed on your computer. Once done, open the console inside the folder, and either run *node app.js* or *npm run app*. Make sure you have an active internet connection as the database is hosted online. Once you run the code, you should see a message "Yay! Database connected successfully". Once connected you can proceed to any http response software, app or code to 
