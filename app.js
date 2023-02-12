@@ -5,9 +5,9 @@ const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
-const constants = require("./constants");
-const database = require("./database");
-const Controller = require("./controller");
+const constants = require("./src/constants");
+const database = require("./src/database");
+const Controller = require("./src/controller");
 const app = express();
 const { MESSAGES } = constants;
 
@@ -19,7 +19,6 @@ app.use(express.json());
 const PORT = process.env.PORT || 5000;
 
 //#endregion
-
 
 
 //#region GET  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,7 +230,7 @@ app.delete("/api/v1/room-type/:roomTypeId", async (req, res) => {
 //#endregion
 
 
-// Code Start Section
+// App/Server Start Section
 app.listen(PORT, () => {
     database();
     console.log(`Server started on port: ${PORT}`);

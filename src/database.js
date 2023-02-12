@@ -11,7 +11,7 @@ function database() {
             // userUnifiedTopology:true,
         })
         .then(() => {
-            console.log("Yay! MongoDB is connected");
+            console.log("Yay! Database Connected Successfully");
         })
         .catch((err) => {
             console.log("There was an error while connecting to the database.");
